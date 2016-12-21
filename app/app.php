@@ -30,7 +30,7 @@
           'all_store' => Store::getAll(),
           'brands_sold_in_store' => $current_store->getBrands()
       ));
-    });
+    }); 
 
     return $app;
 ?>
