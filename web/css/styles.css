@@ -1,0 +1,13 @@
+body {
+    background-color: #F5F5F5;
+    background-size: cover;
+}
+
+.shoe-store-title {
+  text-align: center;
+  margin-top: 5%;
+}
+
+#all-stores {
+  margin-top: 5%
+}
