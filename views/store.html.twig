@@ -1,4 +1,10 @@
-{{single_store.getName}}
+<h1>{{single_store.getName}}</h1>
+
+{% for brand in brands_sold_in_store %}
+    <p>{{brand.getName}}<p>
+{% endfor %}
+
+
 
 <!-- -- 1. Want to display the name of the store clicked on from the index page at the top of this page.
 

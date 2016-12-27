@@ -18,6 +18,7 @@
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
+    //STORES 
 
     $app->get("/", function() use($app){
         return $app['twig']->render('index.html.twig', array('stores' => Store::getAll()));
@@ -27,10 +28,25 @@
       $current_store = Store::find($store_id);
       return $app['twig']->render('store.html.twig', array(
           'single_store' => $current_store,
-          'all_store' => Store::getAll(),
+          'all_brands' => Brand::getAll(),
           'brands_sold_in_store' => $current_store->getBrands()
       ));
-    }); 
+    });
+
+    //BRANDS
+
+        $app->get("/brands", function() use($app) {
+        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
+    });
+
+    $app->post("/brands", function() use($app) {
+        $brand = $_POST['brand'];
+        $style = $_POST['style'];
+        $id = null;
+        $new_brand = new Brand($brand, $style, $id);
+        $new_brand->save();
+        return $app['twig']->render('brands.html.twig', array('brands' => Brand::getAll()));
+    });
 
     return $app;
 ?>

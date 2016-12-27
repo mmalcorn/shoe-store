@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="/css/styles.css" rel="stylesheet" type="text/css">
+        <meta charset="utf-8">
+        <title>Brands</title>
+        <div id="nav">
+            <h1>Brands</h1>
+        </div>
+    </head>
+    <body>
+        <div class="container">
+            <div class="brand-form">
+                <form action="/brands" method="post">
+                    <label for="name">Brand Name:</label>
+                    <input id="name" type="text" name="brand">
+                    <label for="style">Style:</label>
+                    <input id="style" type="text" name="style">
+                    <button type="submit">Add brand</button>
+                </form>
+            </div>
+
+            {% if brands is not empty %}
+                <h3>Existing Brands</h3>
+                {% for current_brand in brands %}
+                        <a href="brands/{{current_brand.getId}}"><p>{{current_brand.getName}}</p></a>
+                        <!-- Must create /brand{id} for the brand name -->
+                {% endfor %}
+            {% endif %}
+        </div>
+
+
+    </body>
+</html>
