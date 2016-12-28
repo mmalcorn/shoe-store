@@ -33,6 +33,19 @@
       ));
     });
 
+    $app->get("/stores", function() use($app){
+        return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
+    });
+
+    //Adds a new store
+    $app->post("/stores", function() use($app) {
+        $store = $_POST['store'];
+        $id = null;
+        $new_store = new Store($store, $id);
+        $new_store->save();
+        return $app['twig']->render('index.html.twig', array('stores' => Store::getAll()));
+    });
+
         $app->delete("/stores/{store_id_to_delete}", function($store_id_to_delete) use($app) {
         $store_to_delete = Store::find($store_id_to_delete);
         $store_to_delete->delete();
