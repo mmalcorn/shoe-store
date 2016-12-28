@@ -1,17 +1,44 @@
-<h1>{{single_store.getName}}</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="/css/styles.css" rel="stylesheet" type="text/css">
+        <meta charset="utf-8">
+        <title>{{single_store.getName}}</title>
 
-{% for brand in brands_sold_in_store %}
-    <p>{{brand.getName}}<p>
-{% endfor %}
+        <div class="main-nav"><h1>{{single_store.getName}}</h1></div>
+    </head>
 
+    <body>
+        <h3>Add a brand and style to {{single_store.getName}}:</h3>
+        <div class="brand-for-store">
 
+            <form action="/store/{{single_store.getId}}" method="post">
 
-<!-- -- 1. Want to display the name of the store clicked on from the index page at the top of this page.
+                <input id="current_store_id" name="current_store_id" type="hidden" value="{{single_store.getId}}">
+                <label id="choose-brand">Select a brand</label>
+                <select class="brand_id" name="brand" type="text">
+                    {% for current_brand in all_brands %}
+                        <option value="{{current_brand.getId}}">{{current_brand.getName}}</option>
+                    {% endfor %}
+                </select>
+                <label id="choose-brand">Choose a style</label>
+                <select class="brand_id" name="style" type="text">
+                    {% for current_brand in all_brands %}
+                        <option value="{{current_brand.getId}}">{{current_brand.getStyle}}</option>
+                    {% endfor %}
+                </select>
+            <button type="submit">Add</button>
+            </form>
+        </div>
 
--- 2. Want to display the brands that are carried within that store on this page.
+        {% for brand in brands_sold_in_store %}
+        <p>{{brand.getName}}<p>
+        {% endfor %}
 
--- 3.  Show pictures of the brand of shoes that carried by this store on this page.
+        <form action="/stores/{{single_store.getId}}" method="post">
+            <input name="_method" type="hidden" value="delete">
+            <button type="submit">Delete {{single_store.getName}}</button>
+        </form>
+    </body>
 
-NOTE:  The above is not displaying anything right now, but the idea *seems* right.
-
-https://github.com/LisaMacCarrigan/Registrar/blob/master/app/app.php -->
+</html>

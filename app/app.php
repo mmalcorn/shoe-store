@@ -18,7 +18,7 @@
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
-    //STORES 
+//STORES
 
     $app->get("/", function() use($app){
         return $app['twig']->render('index.html.twig', array('stores' => Store::getAll()));
@@ -32,6 +32,13 @@
           'brands_sold_in_store' => $current_store->getBrands()
       ));
     });
+
+        $app->delete("/stores/{store_id_to_delete}", function($store_id_to_delete) use($app) {
+        $store_to_delete = Store::find($store_id_to_delete);
+        $store_to_delete->delete();
+        return $app['twig']->render('index.html.twig', array('stores' => Store::getAll()));
+    });
+
 
     //BRANDS
 

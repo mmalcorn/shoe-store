@@ -3,9 +3,14 @@ body {
     background-size: cover;
 }
 
+h3 {
+    margin-left: 2%;
+}
+
 .main-nav, #nav {
     background-color: black;
-    padding-bottom: 2.5%;
+    padding: 2.5%;
+    padding-top: 1%;
     margin-bottom: 5%;
     color: #fff;
 }
@@ -17,6 +22,17 @@ body {
 
 #all-stores {
   margin-top: 5%
+}
+/*----------CONTAINER FOR BRANDS-----------*/
+
+#brand-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.existing-brands {
+    margin-bottom: 5%;
+    margin-left: 5%;
 }
 
 /*----------FORM FOR BRANDS-----------*/
@@ -33,9 +49,7 @@ label {
     padding: 5%;
 }
 form {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    align-self: flex-start;
 }
 #name {
     align-self: flex-start;
@@ -56,11 +70,39 @@ button {
 /*-------------------------------------*/
 
 
+/*DROPDOWNS FOR ADDING BRANDS TO STORES -- brands.html.twig */
+
+.brand-for-store {
+display: flex;
+flex-direction: column;
+/*margin-left: 2%;
+width: 25%;
+padding: 2%;*/
+}
+
+#choose-brand {
+    flex-basis: 20px;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+.brand_id {
+    margin-top: 5%;
+    width: 100px;
+}
+
+button {
+    margin-top: 5%;
+    margin-left: 2%;
+}
+/*-------------------------------------*/
+
 footer {
     position: fixed;
     bottom: 0;
     margin-top: 100%;
     margin-bottom: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
     background-color: black;
     color: #fff;
     width: 80%;
