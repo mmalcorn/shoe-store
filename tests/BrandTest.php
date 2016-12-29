@@ -98,6 +98,26 @@
       $this->assertEquals([], Brand::getAll());
     }
 
+    function test_find()
+        {
+        //Arrange
+        $name = "Emilio Pucci";
+        $style = "boot";
+        $test_brand = new Brand($name, $style);
+        $test_brand->save();
+        $name2 = "Joie";
+        $style2 = "bootie";
+        $test_brand2 = new Brand($name2, $style2);
+        $test_brand2->save();
+
+        //Act
+        $id = $test_brand->getId();
+        $result = Brand::find($id);
+
+        //Assert
+        $this->assertEquals($test_brand, $result);
+    }
+
     function test_addStore()
     {
       // Arrange

@@ -9,31 +9,33 @@
     </head>
 
     <body>
-        <h3>Add a brand and style to {{single_store.getName}}:</h3>
+
         <div class="brand-for-store">
+            <div id="add-brand-to-store">Add a brand to {{single_store.getName}}:</div>
 
-            <form action="/store/{{single_store.getId}}" method="post">
+            <form action="/stores/{{ single_store.getId }}" method="post">
 
-                <input id="current_store_id" name="current_store_id" type="hidden" value="{{single_store.getId}}">
-                <label id="choose-brand">Select a brand</label>
-                <select class="brand_id" name="brand" type="text">
+                <input id="current_store_id" name="current_store_id" type="hidden" value="{{ single_store.getId }}">
+
+                <label for="brand_id">Select a brand</label>
+                <select id="brand_id" name="brand_id" type="text">
+
                     {% for current_brand in all_brands %}
-                        <option value="{{current_brand.getId}}">{{current_brand.getName}}</option>
+                        <option value="{{ current_brand.getId }}"> {{ current_brand.getName }}</option>
                     {% endfor %}
                 </select>
-                <label id="choose-brand">Choose a style</label>
-                <select class="brand_id" name="style" type="text">
-                    {% for current_brand in all_brands %}
-                        <option value="{{current_brand.getId}}">{{current_brand.getStyle}}</option>
-                    {% endfor %}
-                </select>
+
             <button type="submit">Add</button>
+
             </form>
         </div>
 
-        {% for brand in brands_sold_in_store %}
-        <p>{{brand.getName}}<p>
-        {% endfor %}
+        <div class="show-store-brands">
+            {% for brand in brands_sold_in_this_store %}
+            <h3> {{ brand.getName}}</h3>
+            <div id="style-in-store">{{brand.getStyle}}</div>
+            {% endfor %}
+        </div>
 
         <form action="/stores/{{single_store.getId}}" method="post">
             <input name="_method" type="hidden" value="delete">

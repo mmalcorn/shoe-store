@@ -29,7 +29,7 @@
       return $app['twig']->render('store.html.twig', array(
           'single_store' => $current_store,
           'all_brands' => Brand::getAll(),
-          'brands_sold_in_store' => $current_store->getBrands()
+          'brands_sold_in_this_store' => $current_store->getBrands()
       ));
     });
 
@@ -46,12 +46,24 @@
         return $app['twig']->render('index.html.twig', array('stores' => Store::getAll()));
     });
 
+    //Deletes a single store
         $app->delete("/stores/{store_id_to_delete}", function($store_id_to_delete) use($app) {
         $store_to_delete = Store::find($store_id_to_delete);
         $store_to_delete->delete();
         return $app['twig']->render('index.html.twig', array('stores' => Store::getAll()));
     });
 
+    //Adds a brand to a store
+        $app->post("/stores/{store_id}", function($store_id) use($app) {
+          $new_brand_in_store = Brand::find($_POST['brand_id']);
+          $current_store = Store::find($_POST['current_store_id']);
+          $current_store->addBrand($new_brand_in_store);
+          return $app['twig']->render('store.html.twig', array(
+              'single_store' => $current_store,
+              'brands_sold_in_this_store' => $current_store->getBrands(),
+              'all_brands' => Brand::getAll()
+          ));
+        });
 
     //BRANDS
 

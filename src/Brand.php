@@ -84,7 +84,18 @@
       $GLOBALS['DB']->exec("DELETE FROM brands;");
     }
 
-    //When a user is viewing a single Brand, list out all of the Stores that carry that brand and allow them to add a Store to that Brand. Use a join statement in this method too.
-
+    static function find($id)
+  {
+    $found_id = null;
+    $brands = Brand::getAll();
+    foreach($brands as $brand) {
+        $brand_id = $brand->getId();
+        $brand_style = $brand->getStyle();
+        if ($brand_id == $id) {
+        $found_id = $brand;
+        }
+    }
+    return $found_id;
+    }
 }
  ?>
