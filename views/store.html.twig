@@ -14,7 +14,7 @@
             <div id="add-brand-to-store">Add a brand to {{single_store.getName}}:</div>
 
             <form action="/stores/{{ single_store.getId }}" method="post">
-
+              
                 <input id="current_store_id" name="current_store_id" type="hidden" value="{{ single_store.getId }}">
 
                 <label for="brand_id">Select a brand</label>

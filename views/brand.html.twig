@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="/css/styles.css" rel="stylesheet" type="text/css">
+        <meta charset="utf-8">
+
+        <title>{{single_brand.getName}}</title>
+        <div class="main-nav"><h1>{{single_brand.getName}}</h1></div>
+
+    </head>
+
+    <body>
+
+    <div class="brand-for-store">
+        <div id="add-store-to-brand">Add a store for {{single_brand.getName}}:</div>
+
+        <form action="/brands/{{ single_brand.getId }}" method="post">
+
+            <input id="current_brand_id" name="current_brand_id" type="hidden" value="{{ single_brand.getId }}">
+
+            <label for="store_id">Select a store</label>
+            <select id="store_id" name="store_id" type="text">
+
+                {% for current_store in all_stores %}
+                    <option value="{{ current_store.getId }}"> {{ current_store.getName }}</option>
+                {% endfor %}
+            </select>
+
+        <button type="submit">Add</button>
+
+
+        <form action="/brands/{{single_brand.getId}}" method="post">
+            <input name="_method" type="hidden" value="delete">
+            <button type="submit">Delete {{single_brand.getName}}</button>
+        </form>
+
+        </form>
+    </div>
+
+
+    </body>
+
+  </html>

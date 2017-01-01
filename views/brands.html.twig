@@ -13,7 +13,7 @@
             <div class="brand-form">
                 <form action="/brands" method="post">
                     <label for="name">Brand Name:</label>
-                    <input id="name" type="text" name="brand">
+                    <input id="brand" type="text" name="brand">
                     <label for="style">Style:</label>
                     <input id="style" type="text" name="style">
                     <button type="submit">Add brand</button>
@@ -24,7 +24,6 @@
                     <h3>Existing Brands</h3>
                     {% for current_brand in brands %}
                             <a href="brands/{{current_brand.getId}}"><p>{{current_brand.getName}}</p></a>
-                            <!-- Must create /brand{id} for the brand name -->
                     {% endfor %}
                 {% endif %}
             </div>
