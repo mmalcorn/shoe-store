@@ -1,4 +1,4 @@
-# Shoe_Store
+# Shoe Store
 
 ##### _Shoe Store Management App_
 
